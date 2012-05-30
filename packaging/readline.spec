@@ -6,6 +6,7 @@ License: GPLv2+
 Group: System/Libraries
 URL: http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
 Source: ftp://ftp.gnu.org/gnu/readline/readline-%{version}.tar.gz
+Source1001: packaging/readline.manifest 
 
 Patch1: readline-5.2-001.patch
 Patch2: readline-5.2-002.patch
@@ -84,6 +85,7 @@ mv -f rl-fgets.c{_,}
 popd
 
 %build
+cp %{SOURCE1001} .
 export CPPFLAGS="-I%{_includedir}/ncurses"
 %configure
 make %{?_smp_mflags}
@@ -114,18 +116,21 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%manifest readline.manifest
 %defattr(-,root,root,-)
 %doc COPYING 
 /%{_lib}/libreadline*.so.*
 %{_libdir}/libhistory*.so.*
 
 %files devel
+%manifest readline.manifest
 %defattr(-,root,root,-)
 %doc examples/*.c examples/*.h examples/rlfe
 %{_includedir}/readline
 %{_libdir}/lib*.so
 
 %files static
+%manifest readline.manifest
 %defattr(-,root,root,-)
 %{_libdir}/lib*.a
 
