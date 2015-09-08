@@ -1,11 +1,12 @@
-Summary: A library for editing typed command lines
-Name: readline
-Version: 5.2
-Release: 13.24
-License: GPLv2+
-Group: System/Libraries
-URL: http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
-Source: ftp://ftp.gnu.org/gnu/readline/readline-%{version}.tar.gz
+Summary:    A library for editing typed command lines
+Name:       readline
+Version:    5.2
+Release:    13.25
+License:    GPL-2.0+
+Group:      System/Libraries
+URL:        http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+Source:     ftp://ftp.gnu.org/gnu/readline/readline-%{version}.tar.gz
+Source1001: %{name}.manifest
 
 Patch1: readline-5.2-001.patch
 Patch2: readline-5.2-002.patch
@@ -84,6 +85,7 @@ mv -f rl-fgets.c{_,}
 popd
 
 %build
+cp %{SOURCE1001} .
 export CPPFLAGS="-I%{_includedir}/ncurses"
 %configure
 make %{?_smp_mflags}
@@ -102,6 +104,9 @@ done
 
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
+mkdir -p %{buildroot}%{_datadir}/license
+cat COPYING >> %{buildroot}%{_datadir}/license/%{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -115,7 +120,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
+%manifest %{name}.manifest
 %doc COPYING 
+%{_datadir}/license/%{name}
 /%{_lib}/libreadline*.so.*
 %{_libdir}/libhistory*.so.*
 
