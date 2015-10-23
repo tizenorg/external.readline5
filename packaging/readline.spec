@@ -1,11 +1,11 @@
-Summary:    A library for editing typed command lines
-Name:       readline
-Version:    5.2
-Release:    13.25
-License:    GPL-2.0+
-Group:      System/Libraries
-URL:        http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
-Source:     ftp://ftp.gnu.org/gnu/readline/readline-%{version}.tar.gz
+Summary: A library for editing typed command lines
+Name: readline
+Version: 5.2
+Release: 13.25
+License: GPL-2.0+
+Group: System/Libraries
+URL: http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+Source: ftp://ftp.gnu.org/gnu/readline/readline-%{version}.tar.gz
 Source1001: %{name}.manifest
 
 Patch1: readline-5.2-001.patch
@@ -121,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %manifest %{name}.manifest
-%doc COPYING 
+%doc COPYING
 %{_datadir}/license/%{name}
 /%{_lib}/libreadline*.so.*
 %{_libdir}/libhistory*.so.*
